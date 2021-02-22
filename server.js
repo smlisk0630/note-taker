@@ -9,6 +9,7 @@ const app = express();
 require("./routes/htmlRoutes")(app);
 const PORT = process.env.PORT || 5000;
 app.use(express.static("public"));
+const dbpath = path.join(__dirname, "db", "db.json");
 
 // New notes array
 const notesArr = [];
@@ -21,24 +22,24 @@ app.post("/api/notes", (req, res) => {
   res.json(newNote);
 
     // Add event listener to save icon
-    const addBtn = document.getElementById("save-note");
-    addBtn.push(newNote);
-    addBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+    // const addBtn = document.getElementById("save-note");
+    // addBtn.push(newNote);
+    // addBtn.addEventListener("click", (event) => {
+    // event.preventDefault();
 
-    // Send info about the format of the data that in the sent request
-    fetch("/api/characters", {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        },
-        body: JSON.stringify(notes),
-    })
-        .then((response) => response.json())
-        .catch((error) => {
-        console.error("Error:", error);
-        });
-    });
+    // // Send info about the format of the data that in the sent request
+    // fetch("/api/notes", {
+    //     method: "POST",
+    //     headers: {
+    //     "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(notes),
+    // })
+    //     .then((response) => response.json())
+    //     .catch((error) => {
+    //     console.error("Error:", error);
+    //     });
+    // });
 
     // Write note
     function writeNote() {
