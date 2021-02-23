@@ -1,20 +1,28 @@
-const fs = require('fs');
-const dbpath = path.join(__dirname, "db", "db.json");
+const fs = require("fs");
 
- fs.readFile('db/db.json', 'utf8', (err, data) => {
-    if (err) throw err;
-    const notes = JSON.parse(data);
-    console.log(notes);
-    // Route to send notes saved in JSON
-    app.get('/api/notes', (req, res) => res.json(notes));
-    // Route to send particular notes saved in JSON based on key id from broswer click
-    app.get('api/notes/:id', (req, res) => {
-       res.json(notes[req.params.id]); 
+module.exports = (app) => {
+  app.get("/api/notes", (req, res) => {
+    fs.readFile("db/db.json", "utf8", (err, data) => {
+      if (err) return [];
+      res.json(JSON.parse(data));
     });
-    // Route to save note to file
-    app.post('/api/notes', (req, res) => {
-        let newNote = req.body;
-        notes.push(newNote);
-        return res.json({});
+  });
+  
+  // Route to save note to file
+  app.post("/api/notes", (req, res) => {
+    // let notes = [];
+    fs.readFile("db/db.json", "utf8", (err, data) => {
+      if (err) console.log(err);
+      // notes = data returned from JSON.parse (all data in database)
+      let notes = JSON.parse(data);
+      let newNote = req.body;
+      notes.push(newNote);
+      // Write note
+      fs.writeFile("db/db.json", JSON.stringify(notes), (err) => {
+        if (err) throw err;
+        return true;
+      });
+      return res.json(notes);
     });
-});
+  });
+};

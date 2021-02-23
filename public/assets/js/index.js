@@ -28,7 +28,7 @@ let activeNote = {
   text: noteText
 };
 
-const getNotes = () =>
+const getNotes = () => 
   fetch("/api/notes", {
     method: "GET",
     headers: {
@@ -36,18 +36,16 @@ const getNotes = () =>
     },
   });
 
-const saveNote = (note) =>
-  fetch("/api/notes", {
+const saveNote = (note) => {
+console.log(note);
+  return fetch("/api/notes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(activeNote),
+    body: JSON.stringify(note),
   })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+}
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
