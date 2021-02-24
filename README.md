@@ -20,7 +20,7 @@ This application can be found at https://note-taker-00808.herokuapp.com/.
 npm install note-taker
 ```
 ## User Stories
-Placeholder
+![Note Taker Video](public/assets/note-taker-app.gif)
 ## Usage
 Can be used to write and save notes. This application uses an Express.js back end and saves and retrieves note data from a JSON file.
 ## Dependencies
