@@ -7,6 +7,8 @@
 This note taker app can be used to write and save notes. This application uses an Express.js back end and saves and retrieves note data from a JSON file.
 ## Link to Deployed Application
 This application can be found at https://smlisk0630.github.io/note-taker/.
+## Link to Heroku Application
+This application can be found at https://note-taker-00808.herokuapp.com/.
 ## Table of Contents
 [Installation](https://smlisk0630.github.io/note-taker#installation)  
 [User Stories](https://smlisk0630.github.io/note-taker#stories)  
